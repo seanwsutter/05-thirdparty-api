@@ -1,3 +1,27 @@
+
+/* comments */
+var displayCurrentTime = document.querySelector("#currentDay");
+var saveButton = document.querySelector(".fas fa-save")
+
+var currentTime = dayjs().format("dddd, MMMM D, YYYY, h:mm:ss a");
+
+displayCurrentTime.textContent = currentTime;
+
+// Assign saveBtn click listener for user input and get row id and save to local storage
+$(".saveBtn").on("click", function () {
+  localStorage
+});
+
+// saveBtn.addEventListener("click"), function () {
+
+// }
+
+
+// function to loop through time blocks then if statement to check hour and class 
+// assign color based on time
+
+
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
@@ -21,3 +45,25 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+
+
+
+
+/* comments & lessons
+
+// event.preventDefault();
+
+// $(document).ready(function () {
+
+// Click evnt causes refresh
+refreshButtonEl.on('click', function () {
+  location.reload();
+});
+
+
+
+// reset form
+  nameInputEl.val('');
+  commentInputEl.val('');
+*/
