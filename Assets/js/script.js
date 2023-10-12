@@ -1,55 +1,88 @@
-$(document).ready(function () {  // jQuery methods go here...
+// $(document).ready(function () {
+var currentTime = dayjs().format("dddd, MMMM D, h:mm:ss A");
+var displayCurrentTime = document.querySelector("#currentDay");
+// var newBlock = document.querySelector(".px-5")
 
-  var currentTime = dayjs().format("dddd, MMMM D, h:mm A");
-  var displayCurrentTime = document.querySelector("#currentDay");
+displayCurrentTime.textContent = currentTime;
 
-  displayCurrentTime.textContent = currentTime;
+var saveBtn = document.querySelector(".fas fa-save")
 
-  var saveBtn = document.querySelector(".fas fa-save")
+/* saveBtn click function */
+$(".saveBtn").click(function () {
+  var block = $(this).parent().attr("id");
+  var text = $(this).siblings(".description").val();
 
-  /* saveBtn click function */
-  $(".saveBtn").click(function () {
-    var block = $(this).parent().attr("id");
-    var text = $(this).siblings(".description").val();
+localStorage.setItem(block, text)
+  console.log("stored item", (block, text));
+});
 
-
-    localStorage.setItem(block, text)
-    // console.log("stored item", (block, text));
-
+/* display conent from storage, prevents default of refreshing page */
+function displayTimeBlock() {
+  $(".time-block").each(function () {
+    var blockHour = $(this).attr("id");
+    $(this).children(".description").val(localStorage.getItem(blockHour));
   });
+}
+displayTimeBlock();
 
-  /* display conent from storage, prevent default of refreshing page */
-  function displayTimeBlock() {
-    $(".time-block").each(function () {
-      var blockHour = $(this).attr("id");
-      $(this).children(".description").val(localStorage.getItem(blockHour));
-    });
+/* checkHour function */
+function checkHour() {
+  var currentHour = dayjs().hour() // console.log(currentHour);
+  $(".time-block").each(function () {
+    var blockHour = parseInt($(this).attr("id").split("-")[1]);
+    console.log("checking hour:", currentHour);
 
-  }
-  displayTimeBlock();
+    if (blockHour < currentHour) {
+      $(this).addClass("past");
+    } else if (blockHour === currentHour) {
+      $(this).addClass("present");
+    } else {
+      $(this).addClass("future");
+    }
+  });
+}
+checkHour();
 
-  /* checkHour function */
-  function checkHour() {
-    var currentHour = dayjs().hour()
-    $(".time-block").each(function () {
-      var blockHour = parseInt($(this).attr("id").split("-")[1]);
-      // console.log("checking hour:", currentHour);
+// function getBlock() {
+//   for (var i = 9; i < 17; i++) {
+//     var hourName = "9AM";
+//     var hourData = "";
+//     newBlock = $(`
+  
+//   <div id="hour-${i}" class="row time-block ${currentHour}">
+//       <div class="col-2 col-md-1 hour text-center py-3">${hourName}</div>
+//       <textarea class="col-8 col-md-10 description" rows="3">${hourData}</textarea>
+//       <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+//         <i class="fas fa-save" aria-hidden="true"></i>
+//       </button>
+//     </div>
+//     `)
+//   }
+// }
+// getBlock()
+/* each calendar row has to display currnet hour
+indiciate if row is past present future
+display entry available */
 
-      if (blockHour < currentHour) {
-        $(this).addClass("past");
-      } else if (blockHour === currentHour) {
-        $(this).addClass("present");
-      } else {
-        $(this).addClass("future");
-      }
-    });
-  }
+// function getBlocks() {
+// for (var i = 9; i < 17; i++) {
+//   var hourName = "9AM";
+//   var hourData = ""
 
-  checkHour();
+//   const newBlock = $(`
+  
+//   <div id="hour-${i}" class="row time-block ${currentHour}">
+//       <div class="col-2 col-md-1 hour text-center py-3">${hourName}</div>
+//       <textarea class="col-8 col-md-10 description" rows="3">${hourData}</textarea>
+//       <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+//         <i class="fas fa-save" aria-hidden="true"></i>
+//       </button>
+//     </div>
+//     `)
+// }
 
-
-}) // jQuery methods go here...
-
+// getBlocks()
+// }) // jQuery methods go here...
 
 /* comments
 
@@ -119,14 +152,8 @@ $('ul').append("<li class='list'>remove " + txt + "</li>")
 
 // $('ul').on('click', '.list', function () $(this).remove();});
 
-var anchor = document.createElement("a");
-anchor.textContent = data[i].html_url;
-anchor.setAttribute("href", data[i].html_url);
-listItem.append(anchor);
-
 Basic syntax is: $(selector).action()
 
-A $ sign to define/access jQuery
 A (selector) to "query (or find)" HTML elements
 A jQuery action() to be performed on the element(s)
 Examples:
