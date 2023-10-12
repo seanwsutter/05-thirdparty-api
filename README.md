@@ -1,36 +1,36 @@
-# 05 Challenge
+# Third Party APIs: Challenge 05
 
 ## Overview
 
 * Calendar application that allows user to save events for each hour during a typical working day (9am-5pm). 
 
-* WIll run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+* Runs in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
-Will be using [Day.js](https://day.js.org/en/) library to work with date and time.
+* Using localStorage, saved events will persist after refreshing page.
+
+* Works with [Day.js](https://day.js.org/en/) library for date and time.
+
 
 ## Specific Goals
+```
+Display current date and time on website.
 
+Color coded time-bocks for hours 9am - 5pm.
+
+GRAY for past, RED for present, and GREEN for future hours.
+
+Can click and edit text content of time-blocks.
+
+Clicking save icon will save the text of selected time-block in localStorage.
+
+Refreshing webpage will still display localStorage items.
 ```
-* display current date and time on calendar
-* Color coded time blocks for standard work hours (9am-5pm)
-* Can click on event then enter & save info for that timeblock
-* saved info on local storage
-```
-<!-- ```md
-GIVEN I am using a daily planner to create a schedule
-WHEN I open the planner
-THEN the current day is displayed at the top of the calendar
-WHEN I scroll down
-THEN I am presented with timeblocks for standard business hours of 9am&ndash;5pm
-WHEN I view the timeblocks for that day
-THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-WHEN I click into a timeblock
-THEN I can enter an event
-WHEN I click the save button for that timeblock
-THEN the text for that event is saved in local storage
-WHEN I refresh the page
-THEN the saved events persist
-``` -->
+
 ## Preview
 
 ![Preview](./Assets/img/05-third-party-apis-homework-demo.gif)
+
+## Links
+* [GitHub Repository](https://github.com/seanwsutter/05-thirdparty-api)
+
+* [GitHub Pages](https://seanwsutter.github.io/05-thirdparty-api/)
